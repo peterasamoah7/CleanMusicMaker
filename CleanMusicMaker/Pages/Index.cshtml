@@ -1,0 +1,106 @@
+﻿@page
+@using CleanMusicMaker.Pages;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home";
+    int count = 1;
+}
+
+ <div class="starter-template">
+    <h1>Clean Music Maker</h1>
+    <p style="font-size:48px">&#128269; &#127929; &#127928; &#127932; &#128151;</p>
+    <p class="lead">If you have tried to create a karaoke video for an office party or just to have fun with friends and realised you've spent more time
+        removing unwanted content and still not sure you got all out. This tool was made for you.</p>
+    <p class="lead">Clean Music Maker is a prototype online tool that helps users make music clean. The tool acheives this by analysing the lyrics of your music using 
+        Expert AI Information Detection APIs to identify any lyrics that may be considered offensive to listeners. 
+    </p>
+</div>
+
+
+<div class="blog-post">
+    <h3>How does this tool work ?</h3>
+    <p class="lead">
+        1. The music content which is the lyrics is analysed by first splitting the content into multiple sentences. 
+        This is done by passing the content as a request to the Document Analysis API which returns a list of sentences representing each line from the music lyrics.</p>
+    <p class="lead">
+        2. The sentences are then passed as a request to the Information Detection API for hate speech analysis. This API analyses the content of each line and 
+        returns a response which povides information on the content of the lyric.
+    </p>
+    <p class="lead">
+        3. The result of the analysis is displayed to the user with problematic content highlighted for the user auditing. 
+    </p>
+</div>
+
+<div class="blog-post">
+    <h3>Why use this tool ?</h3>
+    <p class="lead">The main benefit of this tool is it gives the user the an effective tool to audit music lyrics against derogatory content. 
+        This is really important as sometimes derogatory content may not be obvious and may be harmful and offensive to listeners. A couple of 
+        scenarios are listed below:
+    </p>   
+    <p class="lead">
+        1. Musicians can use this tool to audit their lyrics to make sure it does not contain content offensive to listeners. An example 
+        is a recent case where a famous US artist had to rework her lyrics after fans made complaints. 
+        Read about it <a href="https://www.bbc.co.uk/news/entertainment-arts-61782726" target="_blank">here</a>. This tool can be used to prevent 
+        such situations from occuring.
+    </p>
+    <p class="lead">
+        2. Karaoke lovers can use this tool to audit lyrics before video creation. This tool helps users identify various forms of derogatory 
+        words and statements so they can be removed.
+    </p>
+    <p class="lead">
+        3. Music streaming apps can use this tool to provide harmful content advisor ratings for songs on their platform.
+    </p>
+    <p class="lead">
+        4. Record labels and music companies can use this tool to analyse lyrics of potential artist to make sure they meet their content 
+        requirement. A recent case was when an AI music artist was dropped due to content found to derogatory. Read about it 
+        <a href="https://www.bbc.co.uk/news/newsbeat-62659741" target="_blank">here</a>.
+    </p>
+</div>
+
+<div class="blog-post">
+    <h3>Try this out</h3>
+    <form method="post">  
+      <div id="lyric-text-area" class="form-group">        
+        <textarea asp-for="Lyrics" class="form-control" rows="20" placeholder="Paste music lyrics here. Banger after Banger."></textarea>
+      </div>
+      <br/>
+      <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+    </form>
+</div>
+
+
+@if (Model.Results.Count > 0)
+{
+    <div id="lyrics-results" class="blog-post">
+        <h3>Music Lyrics Analysis</h3>
+    </div>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Line No.</th>
+            <th scope="col">Lyric Line</th>
+            <th scope="col">Issues</th>
+            <th scope="col">Issues Area</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var result in Model.Results)
+        {
+            <tr>
+                <th scope="row">@count</th>
+                @if(result != null)
+                {
+                    <td>@Html.Raw(result.Line)</td>
+                    <td>@Html.Raw(result.Issues)</td>
+                    <td>@Html.Raw(result.Area)</td>
+                }
+            </tr>
+            count++;
+        }            
+        </tbody>
+    </table> 
+}
+
+
+
