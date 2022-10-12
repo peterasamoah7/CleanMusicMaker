@@ -47,7 +47,9 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-If you have tried to create a karaoke video for an office party or just to have fun with friends and realised you've spent more time removing unwanted content and still not sure you got all out. This tool was made for you. Clean Music Maker is a prototype online tool that helps users make music clean. The tool acheives this by analysing the lyrics of your music using Expert AI Information Detection APIs to identify any lyrics that may be considered offensive to listeners.
+If you have tried to create a karaoke video for an office party or just to have fun with friends and realised you've spent more time removing unwanted content and still not sure you got all out. This tool was made for you. 
+
+Clean Music Maker is a prototype online tool that helps users make music clean. The tool acheives this by analysing the lyrics of your music using Expert AI Information Detection APIs to identify any lyrics that may be considered offensive to listeners.
 
 You can view the demo [here](https://youtu.be/2ELY0YAPGI4)
 
