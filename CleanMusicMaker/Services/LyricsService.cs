@@ -22,12 +22,14 @@ namespace CleanMusicMaker.Services
             if (sentences  == null || !sentences.Success || sentences.Data == null || sentences.Data.Sentences == null)
                 return results;
 
+            int count = 1;
             foreach(var sentence in sentences.Data.Sentences)
             {
                 var response = await _textAnalyticsService
                     .DetectForHateSpeech(content.GetSubString(sentence.Start, sentence.End));
 
-                results.Add(DetectorResult.Create(response));
+                results.Add(DetectorResult.Create(count, response));
+                count++;
             }
                 
             return results;

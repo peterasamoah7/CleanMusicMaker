@@ -9,6 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<NlpConfiguation>(
     builder.Configuration.GetSection(NlpConfiguation.Section));
 
+builder.Services.Configure<SpeechConfiguration>(
+    builder.Configuration.GetSection(SpeechConfiguration.Section));
+
 // Add services to the container.
 builder.Services.AddRazorPages().AddNewtonsoftJson(options => {
     options.SerializerSettings.Converters.Add(new StringEnumConverter());
@@ -25,6 +28,7 @@ builder.Services.AddHttpClient<ITokenService, TokenService>(options => {
 });
 
 builder.Services.AddScoped<ILyricsService, LyricsService>();
+builder.Services.AddScoped<IAudioService, AudioService>();
 
 var app = builder.Build();
 

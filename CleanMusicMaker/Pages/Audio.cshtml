@@ -1,0 +1,76 @@
+﻿@page
+@using CleanMusicMaker.Pages;
+@model CleanMusicMaker.Pages.AudioModel
+@{
+    ViewData["Title"] = "Audio";
+}
+
+ <div class="starter-template">
+    <h1>Clean Music Maker</h1>
+    <p style="font-size:48px">&#128269; &#127929; &#127928; &#127932; &#128151;</p>
+    <p class="lead">If you have tried to create a karaoke video for an office party or just to have fun with friends and realised you've spent more time
+        removing unwanted content and still not sure you got all out. This tool was made for you.</p>
+    <p class="lead">Clean Music Maker is a prototype online tool that helps users make music clean. The tool acheives this by analysing the lyrics of your music using 
+        Expert AI Information Detection APIs to identify any lyrics that may be considered offensive to listeners. 
+    </p>
+</div>
+
+<div class="blog-post">
+    <h3>Try this out</h3>
+    <br/>
+    <form method="post" enctype="multipart/form-data">        
+       <div class="mb-3">
+          <label for="formFile" class="form-label">Currently only wave audio formats are supported.</label>
+          <input asp-for="Upload" class="form-control" type="file">
+          <br/>
+           <div class="form-check form-switch">
+              <input asp-for="ShowAll" class="form-check-input" type="checkbox">
+              <label class="form-check-label" for="flexSwitchCheckChecked">Show all lyrics analysis. You can use this switch to show anaylsis for all lines. 
+              By default this tool only returns lines that are identified to contain offensive content. Turning this on will
+              display all lyric lines including those where no issues were found.</label>
+           </div>
+            <br/>
+       </div>   
+       <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+    </form>
+</div>
+
+@if (Model.Results.Count > 0)
+{
+    <div id="lyrics-results" class="blog-post">
+        <h3>Music Lyrics Analysis</h3>
+    </div>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Line No.</th>
+            <th scope="col">Lyric Line</th>
+            <th scope="col">Issues</th>
+            <th scope="col">Issues Area</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var result in Model.Results)
+        {
+            <tr>                
+                @if(result != null)
+                {
+                    <th scope="row">@result.LineNo</th>
+                    <td>@Html.Raw(result.Line)</td>
+                    <td>@Html.Raw(result.Issues)</td>
+                    <td>@Html.Raw(result.Area)</td>
+                }
+            </tr>
+        }            
+        </tbody>
+    </table> 
+}
+
+@if (Model.AudioContent != null && Model.Results.Count == 0)
+{
+    <div id="lyrics-results" class="blog-post">
+        <h3>Music Lyrics Analysis</h3>
+        <p class="lead">No issues found. Re-run the lyrics and this time check the radio button to see the lyrics that was analysed.</p>
+    </div>
+}

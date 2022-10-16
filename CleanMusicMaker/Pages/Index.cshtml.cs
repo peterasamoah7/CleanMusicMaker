@@ -14,6 +14,9 @@ namespace CleanMusicMaker.Pages
         [BindProperty]
         public string? Lyrics { get; set; }
 
+        [BindProperty]
+        public bool ShowAll { get; set; }
+
         public List<DetectorResult?> Results { get; set; }
 
         public IndexModel(ILyricsService lyricsService, IMemoryCache memoryCache)
@@ -25,8 +28,8 @@ namespace CleanMusicMaker.Pages
 
         public IActionResult OnGetAsync()
         {
-            if (_memoryCache.TryGetValue<List<DetectorResult?>>("results", out var results) &&
-                _memoryCache.TryGetValue<string?>("lyrics", out var lyrics))
+            if (_memoryCache.TryGetValue<List<DetectorResult?>>("text-results", out var results) &&
+                _memoryCache.TryGetValue<string?>("text-lyrics", out var lyrics))
             {
                 Results = results;
                 Lyrics = lyrics;
@@ -43,8 +46,15 @@ namespace CleanMusicMaker.Pages
             }
 
             var results = await _lyricsService.Analyse(Lyrics);
-            _memoryCache.Set("results", results, DateTimeOffset.Now.AddMinutes(2));
-            _memoryCache.Set("lyrics", Lyrics, DateTimeOffset.Now.AddMinutes(2));
+
+            if(!ShowAll)
+            {
+                results = results.Where(x => x!.Issues != "No Issues Found").ToList();
+            }
+
+            _memoryCache.Set("text-results", results, DateTimeOffset.Now.AddMinutes(1));
+            _memoryCache.Set("text-lyrics", Lyrics, DateTimeOffset.Now.AddMinutes(1));
+
             return RedirectToPage("./Index");
         }
     }

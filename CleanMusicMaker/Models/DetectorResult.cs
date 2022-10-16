@@ -4,33 +4,36 @@ namespace CleanMusicMaker.Models
 {
     public class DetectorResult
     {
+        public int LineNo { get; }
         public string? Line { get; }
 
         public string? Issues { get; }
 
         public string? Area { get; }
 
-        public  DetectorResult(string? line)
+        public  DetectorResult(int lineNo, string? line)
         {
+            LineNo = lineNo;
             Line = line;
             Issues = "No Issues Found";
-            Area = "This Lyrics is clean";
+            Area = "No Issues Found";
         }
 
-        public DetectorResult(string? line, string? issues, string? area)
+        public DetectorResult(int lineNo, string? line, string? issues, string? area)
         {
+            LineNo = lineNo;
             Line = line;
             Issues = issues;
             Area = area;
         }
 
-        public static DetectorResult? Create(DetectorResponse? model)
+        public static DetectorResult? Create(int lineNo, DetectorResponse? model)
         {
             if (model == null || model.Data == null || model.Data.Content == null)
                 throw new ArgumentNullException(nameof(model));
 
             if (model.Data.Categories == null || !model.Data.Categories.Any())
-                return new DetectorResult(model.Data.Content);
+                return new DetectorResult(lineNo, model.Data.Content);
 
             var issues = string.Empty;
             var area = string.Empty;
@@ -48,7 +51,7 @@ namespace CleanMusicMaker.Models
                 }
             }
 
-            return new DetectorResult(model.Data.Content, issues, area);
+            return new DetectorResult(lineNo, model.Data.Content, issues, area);
         }
     }
 }
