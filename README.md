@@ -51,7 +51,7 @@ If you have tried to create a karaoke video for an office party or just to have 
 
 Clean Music Maker is a prototype online tool that helps users make music clean. The tool acheives this by analysing the lyrics of your music using Expert AI Information Detection APIs to identify any lyrics that may be considered offensive to listeners.
 
-You can view the demo [here](https://youtu.be/2ELY0YAPGI4)
+You can view the demo [here](https://youtu.be/hUtAi0wtr8s)
 
 You can try the live application here [Live site](https://cleanmusicmaker.azurewebsites.net/)
 
@@ -101,7 +101,7 @@ To run the application locally, please follow the steps below.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Please refer to the [demo](https://youtu.be/2ELY0YAPGI4)
+Please refer to the [demo](https://youtu.be/hUtAi0wtr8s)
 
 <!-- LICENSE -->
 ## License
