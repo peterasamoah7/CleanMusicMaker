@@ -24,6 +24,9 @@ namespace CleanMusicMaker.Services
             var speechConfig = SpeechConfig.FromSubscription(_speechConfig.SpeechKey, _speechConfig.SpeechRegion);
 
             speechConfig.SpeechRecognitionLanguage = "en-US";
+            speechConfig.SetProfanity(ProfanityOption.Raw);
+            speechConfig.OutputFormat = OutputFormat.Detailed;
+
             var stopRecognition = new TaskCompletionSource<int>();
 
             using var audioConfig = Helper.OpenWavFile(file.OpenReadStream());
