@@ -20,7 +20,10 @@
     <br/>
     <form method="post" enctype="multipart/form-data">        
        <div class="mb-3">
-          <label for="formFile" class="form-label">Currently only wave audio formats are supported.</label>
+          <label for="formFile" class="form-label">Currently only wave audio formats are supported. Also certain profane words 
+              are considered too extreme to be transcribed and are automatically removed from the text even with profanity settings 
+              set to off. Double check your lyrics using the Text input so you don't miss these. 
+          </label>
           <input asp-for="Upload" class="form-control" type="file">
           <br/>
            <div class="form-check form-switch">
