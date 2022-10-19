@@ -51,7 +51,7 @@ If you have tried to create a karaoke video for an office party or just to have 
 
 Clean Music Maker is a prototype online tool that helps users make music clean. The tool acheives this by analysing the lyrics of your music using Expert AI Information Detection APIs to identify any lyrics that may be considered offensive to listeners.
 
-You can view the demo [here](https://youtu.be/hUtAi0wtr8s)
+You can view the demo [here](https://youtu.be/K_tMPIIyOKQ)
 
 You can try the live application here [Live site](https://cleanmusicmaker.azurewebsites.net/)
 
@@ -68,12 +68,16 @@ To run the application locally, please follow the steps below.
 
 * [Visual Studio 2022](https://visualstudio.microsoft.com/)
 * [Expert AI Developer account](https://developer.expert.ai/)
+* [Azure Subscription](https://azure.microsoft.com/en-gb/free/)
+* [Azure Speech Service](https://azure.microsoft.com/en-us/products/cognitive-services/speech-services/)
 
 
 ### Setup
 
 1. Clone the repo 
 2. Create a developer account at [Expert AI](https://developer.expert.ai/)
+3. Create a free Azure account at [Azure account](https://azure.microsoft.com/en-gb/free/)
+4. Create a free Azure Speech resource at [Azure Speech SDK](https://learn.microsoft.com/en-gb/azure/cognitive-services/speech-service/speech-sdk)
 
 3. Update `appsettings.json`
   ```sh
@@ -88,8 +92,12 @@ To run the application locally, please follow the steps below.
   "NlpConfig": {
     "ApiUrl": "https://nlapi.expert.ai",
     "AuthUrl": "https://developer.expert.ai",
-    "Username": "Enter your Expert AI User name",
-    "Password": "Enter your Exprt AI Password"
+    "Username": "Enter your expert ai username",
+    "Password": "Enter yout expert ai password"
+  },
+  "SpeechConfig": {
+    "SpeechKey": "Enter your Azure Speech API Key",
+    "SpeechRegion": "Enter your Azure Speech resource region"
   }
 }
 ```
@@ -101,7 +109,7 @@ To run the application locally, please follow the steps below.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Please refer to the [demo](https://youtu.be/hUtAi0wtr8s)
+Please refer to the [demo](https://youtu.be/K_tMPIIyOKQ)
 
 <!-- LICENSE -->
 ## License
