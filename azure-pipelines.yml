@@ -13,6 +13,23 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-steps:
-  - script: dotnet build -c $(buildConfiguration)
-    displayName: 'Build Application'
+stages:
+  - stage: BuildStage
+    jobs:
+      - job: BuildJob
+        steps:
+          - script: dotnet build -c $(buildConfiguration)
+            displayName: 'Build Application'
+  - stage: TestStage
+    jobs:
+      - job: TestJob
+        steps:
+          - script: echo Testing!
+            displayName: 'Testing Application'
+  - stage: DeployStage
+    jobs:
+      - job: DeployJob
+        steps:
+          - script: echo Deploying!
+            displayName: 'Deploying Application'
+  
