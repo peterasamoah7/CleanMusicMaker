@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/peterasamoah7/LearnDevOps/_apis/build/status/peterasamoah7.CleanMusicMaker?branchName=main)](https://dev.azure.com/peterasamoah7/LearnDevOps/_build/latest?definitionId=24&branchName=main)
+
 <!--
 *** Thanks for checking out the Best-README-Template. If you have a suggestion
 *** that would make this better, please fork the repo and create a pull request
