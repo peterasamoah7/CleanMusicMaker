@@ -12,6 +12,8 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-steps:
-- script: dotnet publish -c $(buildConfiguration) -o $(Build.ArtifactStagingDirectory)
-  displayName: 'dotnet publish $(buildConfiguration)'
+jobs:
+ - job: buildapplication
+   steps:
+    - script: dotnet build -c $(buildConfiguration)
+      displayName: 'dotnet publish $(buildConfiguration)'
