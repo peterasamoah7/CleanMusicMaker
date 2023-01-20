@@ -16,4 +16,6 @@ jobs:
  - job: buildapplication
    steps:
     - script: dotnet build -c $(buildConfiguration)
-      displayName: 'dotnet publish $(buildConfiguration)'
+      displayName: 'Build Application'
+    
+    - script: echo "Build completed for $(buildConfiguration)"
