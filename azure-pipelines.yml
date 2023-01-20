@@ -13,11 +13,6 @@ pool:
 variables:
   buildConfiguration: 'Release'
 
-jobs:
- - job: buildapplication
-   steps:
-    - script: dotnet build -c $(buildConfiguration)
-      displayName: 'Build Application'
-    
-    - script: echo "Build completed for $(buildConfiguration)"
-      displayName: 'Status message'
+steps:
+  - script: dotnet build -c $(buildConfiguration)
+    displayName: 'Build Application'
